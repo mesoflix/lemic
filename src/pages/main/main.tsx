@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useCallback } from 'react';
+import React, { lazy, Suspense, useEffect, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -29,10 +29,11 @@ const AppWrapper = observer(() => {
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
+    const [selectedBot, setSelectedBot] = useState(null);
 
     const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial', 'analysis_tool', 'free_bots'];
     
-    const GetHashedValue = useCallback((tab: number) => {
+    const GetHashedValue = useCallback((tab) => {
         let tab_value = location.hash?.split('#')[1];
         return tab_value ? Number(hash.indexOf(String(tab_value))) : tab;
     }, [location.hash]);
@@ -44,7 +45,7 @@ const AppWrapper = observer(() => {
         navigate(`#${hash[active_hash_tab] || hash[0]}`);
     }, [active_hash_tab, setActiveTab, navigate]);
 
-    const handleTabChange = useCallback((tab_index: number) => {
+    const handleTabChange = useCallback((tab_index) => {
         setActiveTab(tab_index);
         navigate(`#${hash[tab_index] || hash[0]}`);
     }, [setActiveTab, navigate]);
@@ -93,12 +94,13 @@ const AppWrapper = observer(() => {
                                 <h2 style={{ marginBottom: '10px' }}>Free Bots</h2>
                                 <p style={{ marginBottom: '20px' }}>Browse and download free bot files here.</p>
                                 <ul style={{ listStyleType: 'none', padding: 0, display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 1</a></li>
-                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 2</a></li>
-                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 3</a></li>
-                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 4</a></li>
-                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 5</a></li>
+                                    {['Bot Strategy 1', 'Bot Strategy 2', 'Bot Strategy 3', 'Bot Strategy 4', 'Bot Strategy 5'].map((bot, index) => (
+                                        <li key={index} style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9', cursor: 'pointer' }} onClick={() => setSelectedBot(bot)}>
+                                            📂 {bot}
+                                        </li>
+                                    ))}
                                 </ul>
+                                {selectedBot && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>Loading {selectedBot}...</p>}
                             </div>
                         </div>
                     </Tabs>
