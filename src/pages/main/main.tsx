@@ -235,6 +235,24 @@ const AppWrapper = observer(() => {
                                     <Tutorial handleTabChange={handleTabChange} />
                                 </Suspense>
                             </div>
+                            <div
+    label={
+        <>
+            <LabelPairedChartLineCaptionRegularIcon
+                height='24px'
+                width='24px'
+                fill='var(--text-general)'
+            />
+            <Localize i18n_default_text='Analysis Tool' />
+        </>
+    }
+    id='id-analysis-tool'
+>
+    <Suspense fallback={<ChunkLoader message={localize('Please wait, loading analysis tool...')} />}>
+        <AnalysisTool />
+    </Suspense>
+</div>
+
                         </div>
                     </Tabs>
                 </div>
