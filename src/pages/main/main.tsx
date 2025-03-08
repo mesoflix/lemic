@@ -75,20 +75,21 @@ const AppWrapper = observer(() => {
             <TradingViewModal />
             
             {/* Analysis Tool Popup */}
-            <Dialog
-                is_visible={isAnalysisToolOpen}
-                has_close_icon
-                onClose={handleCloseAnalysisTool}
-                title='Analysis Tool'
-            >
-                <iframe
-                    src='https://binaryfx.site/x-bot'
-                    title='Analysis Tool'
-                    width='100%'
-                    height='600px'
-                    style={{ border: 'none' }}
-                />
-            </Dialog>
+            {isAnalysisToolOpen && (
+                <div className='draggable_resize_container'>
+                    <div className='analysis-tool-header'>
+                        <span>Analysis Tool</span>
+                        <button onClick={handleCloseAnalysisTool} className='close-btn'>✖</button>
+                    </div>
+                    <iframe
+                        src='https://your-analysis-tool-url.com'
+                        title='Analysis Tool'
+                        width='100%'
+                        height='100%'
+                        style={{ border: 'none' }}
+                    />
+                </div>
+            )}
         </React.Fragment>
     );
 });
