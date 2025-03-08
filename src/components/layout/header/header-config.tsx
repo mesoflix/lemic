@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+tsimport { ReactNode, useEffect, useState } from 'react';
 import { standalone_routes } from '@/components/shared';
 import { localize } from '@deriv-com/translations';
 
@@ -35,11 +35,10 @@ const ExternalIcon = ({ url, alt, size }: { url: string; alt: string; size: numb
 export const platformsConfig: PlatformsConfig[] = [
     {
         active: true,
-        buttonIcon: <ExternalIcon url="/home.svg" alt="Bot Logo" size={25} />,
+        buttonIcon: <ExternalIcon url="assests/home.svg" alt="Bot Logo" size={25} />,
         description: localize('Automated trading at your fingertips. No coding needed.'),
         href: 'https://bot.binarylab.site',
-        icon: <ExternalIcon url="
-                  /home.svg" alt="Bot Logo" size={32} />,
+        icon: <ExternalIcon url="assets/home.svg" alt="Bot Logo" size={32} />,
         showInEU: false,
     },
     {
