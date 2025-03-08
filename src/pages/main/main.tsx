@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useCallback } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -32,22 +32,22 @@ const AppWrapper = observer(() => {
 
     const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial', 'analysis_tool'];
     
-    const GetHashedValue = (tab: number) => {
+    const GetHashedValue = useCallback((tab: number) => {
         let tab_value = location.hash?.split('#')[1];
         return tab_value ? Number(hash.indexOf(String(tab_value))) : tab;
-    };
+    }, [location.hash]);
     
     const active_hash_tab = GetHashedValue(active_tab);
 
     useEffect(() => {
         setActiveTab(Number(active_hash_tab));
-        navigate(`#${hash[active_tab] || hash[0]}`);
-    }, [active_tab]);
+        navigate(`#${hash[active_hash_tab] || hash[0]}`);
+    }, [active_hash_tab, setActiveTab, navigate]);
 
-    const handleTabChange = (tab_index: number) => {
+    const handleTabChange = useCallback((tab_index: number) => {
         setActiveTab(tab_index);
         navigate(`#${hash[tab_index] || hash[0]}`);
-    };
+    }, [setActiveTab, navigate]);
 
     return (
         <React.Fragment>
