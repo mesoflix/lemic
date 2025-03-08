@@ -53,9 +53,9 @@ export const platformsConfig: PlatformsConfig[] = [
 
 export const TRADERS_HUB_LINK_CONFIG = {
     as: 'a',
-    href: 'https://tradershub.binarylab.site',
-    icon: <ExternalIcon url="/home.svg" alt="Trader's Hub" size={20} />,
-    label: "Trader's Hub",
+    href: 'https://binarylab.site',
+    icon: <ExternalIcon url="assets/home.svg" alt="Trader's Hub" size={20} />,
+    label: "",
 };
 
 export const MenuItems: MenuItemsConfig[] = [
