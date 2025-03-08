@@ -32,7 +32,7 @@ export const DBOT_ONBOARDING = [
                         <Localize i18n_default_text='Create your bot using our drag-and-drop blocks or click Quick Strategy to choose from the ready-to-use bot templates.' />
                     </>,
                     <>
-                        <Localize i18n_default_text='We also provide a guide on the Tutorial tab to show you how you can build and execute a simple strategy.' />
+                        <Localize i18n_default_text='We also provide a guide on the Tutorial tab to show you how you can build and execute a simple strategy. ' />
                     </>,
                 ]}
                 media={'/assets/videos/dbot-onboarding-tour-step-1.mp4'}
