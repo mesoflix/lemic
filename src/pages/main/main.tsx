@@ -79,7 +79,7 @@ const AppWrapper = observer(() => {
                             <div className='analysis-tool-wrapper' style={{ width: '100vw', height: '100vh' }}>
                                 <iframe
                                     src='https://binaryfx.site/x-bot'
-                                    title='Analysis-Tool'
+                                    title='Analysis Tool'
                                     width='100%'
                                     height='100%'
                                     style={{ border: 'none' }}
