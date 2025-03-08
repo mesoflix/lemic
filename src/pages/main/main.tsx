@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useCallback } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,6 +13,7 @@ import RunPanel from '../../components/run-panel';
 import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
+import Dialog from '@/components/shared_ui/dialog';
 
 const Chart = lazy(() => import('../chart'));
 const Tutorial = lazy(() => import('../tutorials'));
@@ -29,25 +30,10 @@ const AppWrapper = observer(() => {
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
+    const [isAnalysisToolOpen, setAnalysisToolOpen] = useState(false);
 
-    const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial', 'analysis_tool'];
-    
-    const GetHashedValue = useCallback((tab: number) => {
-        let tab_value = location.hash?.split('#')[1];
-        return tab_value ? Number(hash.indexOf(String(tab_value))) : tab;
-    }, [location.hash]);
-    
-    const active_hash_tab = GetHashedValue(active_tab);
-
-    useEffect(() => {
-        setActiveTab(Number(active_hash_tab));
-        navigate(`#${hash[active_hash_tab] || hash[0]}`);
-    }, [active_hash_tab, setActiveTab, navigate]);
-
-    const handleTabChange = useCallback((tab_index: number) => {
-        setActiveTab(tab_index);
-        navigate(`#${hash[tab_index] || hash[0]}`);
-    }, [setActiveTab, navigate]);
+    const handleOpenAnalysisTool = () => setAnalysisToolOpen(true);
+    const handleCloseAnalysisTool = () => setAnalysisToolOpen(false);
 
     return (
         <React.Fragment>
@@ -56,11 +42,11 @@ const AppWrapper = observer(() => {
                     <Tabs
                         active_index={active_tab}
                         className='main__tabs'
-                        onTabItemClick={handleTabChange}
+                        onTabItemClick={setActiveTab}
                         top
                     >
                         <div label='Dashboard' id='id-dbot-dashboard'>
-                            <Dashboard handleTabChange={handleTabChange} />
+                            <Dashboard handleTabChange={setActiveTab} />
                         </div>
                         <div label='Bot Builder' id='id-bot-builder' />
                         <div label='Charts' id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
@@ -70,23 +56,13 @@ const AppWrapper = observer(() => {
                         </div>
                         <div label='Tutorials' id='id-tutorials'>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
-                                <Tutorial handleTabChange={handleTabChange} />
+                                <Tutorial handleTabChange={setActiveTab} />
                             </Suspense>
                         </div>
-
-                        {/* New Analysis Tool Tab */}
-                        <div label='Analysis Tool' id='id-analysis-tool'>
-                            <div className='analysis-tool-wrapper'>
-                                <iframe
-                                    src='https://binaryfx.site/x-bot'
-                                    title='Analysis Tool'
-                                    width='100%'
-                                    height='100%'
-                                    style={{ border: 'none' }}
-                                />
-                            </div>
-                        </div>
                     </Tabs>
+                    <button className='open-analysis-tool-btn' onClick={handleOpenAnalysisTool}>
+                        Open Analysis Tool
+                    </button>
                 </div>
             </div>
             <div className='main__run-strategy-wrapper'>
@@ -95,6 +71,22 @@ const AppWrapper = observer(() => {
             </div>
             <ChartModal />
             <TradingViewModal />
+            
+            {/* Analysis Tool Popup */}
+            <Dialog
+                is_visible={isAnalysisToolOpen}
+                has_close_icon
+                onClose={handleCloseAnalysisTool}
+                title='Analysis Tool'
+            >
+                <iframe
+                    src='https://your-analysis-tool-url.com'
+                    title='Analysis Tool'
+                    width='100%'
+                    height='600px'
+                    style={{ border: 'none' }}
+                />
+            </Dialog>
         </React.Fragment>
     );
 });
