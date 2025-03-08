@@ -89,15 +89,15 @@ const AppWrapper = observer(() => {
 
                         {/* New Free Bots Tab */}
                         <div label={<><svg width='16' height='16'><polygon points='2,2 14,2 8,14' fill='black' /></svg> Free Bots</>} id='id-free-bots'>
-                            <div className='free-bots-wrapper' style={{ padding: '20px' }}>
-                                <h2>Free Bots</h2>
-                                <p>Browse and download free bot files here.</p>
-                                <ul>
-                                    <li><a href='#'>Bot Strategy 1</a> - A high-frequency trading bot.</li>
-                                    <li><a href='#'>Bot Strategy 2</a> - A trend-following bot.</li>
-                                    <li><a href='#'>Bot Strategy 3</a> - A volatility-based trading bot.</li>
-                                    <li><a href='#'>Bot Strategy 4</a> - A reversal pattern bot.</li>
-                                    <li><a href='#'>Bot Strategy 5</a> - A support and resistance bot.</li>
+                            <div className='free-bots-wrapper' style={{ padding: '20px', textAlign: 'center' }}>
+                                <h2 style={{ marginBottom: '10px' }}>Free Bots</h2>
+                                <p style={{ marginBottom: '20px' }}>Browse and download free bot files here.</p>
+                                <ul style={{ listStyleType: 'none', padding: 0, display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 1</a></li>
+                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 2</a></li>
+                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 3</a></li>
+                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 4</a></li>
+                                    <li style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9' }}><a href='#'>📂 Bot Strategy 5</a></li>
                                 </ul>
                             </div>
                         </div>
