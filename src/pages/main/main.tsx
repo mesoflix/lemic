@@ -159,12 +159,38 @@ const AppWrapper = observer(() => {
                     })}
                 >
                     <Tabs
-                        active_index={active_tab}
-                        className='main__tabs'
-                        onTabItemChange={onEntered}
-                        onTabItemClick={handleTabChange}
-                        top
-                    >
+    active_index={active_tab}
+    className='main__tabs'
+    onTabItemChange={onEntered}
+    onTabItemClick={handleTabChange}
+    top
+>
+    {/* Other tabs remain the same */}
+
+    <div
+        label={
+            <>
+                <LabelPairedChartLineCaptionRegularIcon
+                    height='24px'
+                    width='24px'
+                    fill='var(--text-general)'
+                />
+                <Localize i18n_default_text='Analysis Tool' />
+            </>
+        }
+        id='id-analysis-tool'
+    >
+        <div className='analysis-tool-wrapper' style={{ width: '100%', height: '100vh' }}>
+            <iframe
+                src="https://your-analysis-tool-url.com"
+                title="Analysis Tool"
+                width="100%"
+                height="100%"
+                style={{ border: 'none' }}
+            />
+        </div>
+    </div>
+
                         <div
                             label={
                                 <>
@@ -234,31 +260,6 @@ const AppWrapper = observer(() => {
                                 >
                                     <Tutorial handleTabChange={handleTabChange} />
                                 </Suspense>
-                            </div><div
-    label={
-        <>
-            <LabelPairedChartLineCaptionRegularIcon
-                height='24px'
-                width='24px'
-                fill='var(--text-general)'
-            />
-            <Localize i18n_default_text='Analysis Tool' />
-        </>
-    }
-    id='id-analysis-tool'
->
-    <div className='analysis-tool-wrapper' style={{ width: '100%', height: '100vh' }}>
-        <iframe
-            src="https://your-analysis-tool-url.com"
-            title="Analysis Tool"
-            width="100%"
-            height="100%"
-            style={{ border: 'none' }}
-        />
-    </div>
-</div>
-
-
                         </div>
                     </Tabs>
                 </div>
