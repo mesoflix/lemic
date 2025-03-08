@@ -66,25 +66,3 @@ export const platformsConfig: PlatformsConfig[] = [
         showInEU: false,
     },
 ];
-
-export const TRADERS_HUB_LINK_CONFIG = {
-    as: 'a',
-    href: standalone_routes.traders_hub,
-    icon: <TradershubLogo iconSize='xs' />,
-    label: "Trader's Hub",
-};
-
-export const MenuItems: MenuItemsConfig[] = [
-    {
-        as: 'a',
-        href: standalone_routes.reports,
-        icon: <ReportsLogo iconSize='xs' />,
-        label: localize('Reports'),
-    },
-    {
-        as: 'a',
-        href: standalone_routes.cashier,
-        icon: <CashierLogo iconSize='xs' />,
-        label: localize('Cashier'),
-    },
-];
