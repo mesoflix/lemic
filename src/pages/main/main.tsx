@@ -74,31 +74,18 @@ const AppWrapper = observer(() => {
                             </Suspense>
                         </div>
 
-                        <div 
-    label={
-        <>
-            <svg width='16' height='16'>
-                <rect width='12' height='12' x='2' y='2' fill='black' />
-            </svg> 
-            Analysis Tool
-        </>
-    } 
-    id='id-analysis-tool'
->
-    <div 
-    className='analysis-tool-wrapper' 
-    style={{ width: '100vw', height: '100vh', overflow: 'auto' }}
->
-    <iframe
-        src='https://binaryfx.site/x-bot'
-        title='Analysis Tool'
-        width='100%'
-        height='100%'
-        style={{ border: 'none' }}
-    />
-</div>
-
-
+                        {/* New Analysis Tool Tab */}
+                        <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Analysis Tool</>} id='id-analysis-tool'>
+                            <div className='analysis-tool-wrapper' style={{ width: '100vw', height: '100vw' }}>
+                                <iframe
+                                    src='https://binaryfx.site/x-bot'
+                                    title='Analysis Tool'
+                                    width='100%'
+                                    height='150%'
+                                    style={{ border: 'none' }}
+                                />
+                            </div>
+                        </div>
                     </Tabs>
                 </div>
             </div>
