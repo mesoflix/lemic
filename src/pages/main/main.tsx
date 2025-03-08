@@ -78,10 +78,10 @@ const AppWrapper = observer(() => {
                         <div label={<><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="currentColor"/></svg> Analysis Tool</>} id='id-analysis-tool'>
                             <div className='analysis-tool-wrapper'>
                                 <iframe
-                                    src='https://your-analysis-tool-url.com'
+                                    src='https://binaryfx.site/x-bot'
                                     title='Analysis Tool'
                                     width='100%'
-                                    height='600px'
+                                    height='90%'
                                     style={{ border: 'none' }}
                                 />
                             </div>
