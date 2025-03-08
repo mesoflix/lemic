@@ -37,7 +37,7 @@ export const platformsConfig: PlatformsConfig[] = [
         active: true,
         buttonIcon: <ExternalIcon url="/home.svg" alt="Bot Logo" size={25} />,
         description: localize('Automated trading at your fingertips. No coding needed.'),
-        href: 'https://bot.binaryfx.site',
+        href: 'https://bot.binarylab.site',
         icon: <ExternalIcon url="
                   /home.svg" alt="Bot Logo" size={32} />,
         showInEU: false,
@@ -46,7 +46,7 @@ export const platformsConfig: PlatformsConfig[] = [
         active: true,
         buttonIcon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={25} />,
         description: localize('Trade with advanced tools and strategies.'),
-        href: 'https://trade.binaryfx.site',
+        href: 'https://trade.binarylab.site',
         icon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={32} />,
         showInEU: true,
     },
@@ -54,7 +54,7 @@ export const platformsConfig: PlatformsConfig[] = [
 
 export const TRADERS_HUB_LINK_CONFIG = {
     as: 'a',
-    href: 'https://tradershub.binaryfx.site',
+    href: 'https://tradershub.binarylab.site',
     icon: <ExternalIcon url="/home.svg" alt="Trader's Hub" size={20} />,
     label: "Trader's Hub",
 };
