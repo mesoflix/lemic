@@ -234,8 +234,7 @@ const AppWrapper = observer(() => {
                                 >
                                     <Tutorial handleTabChange={handleTabChange} />
                                 </Suspense>
-                            </div>
-                            <div
+                            </div><div
     label={
         <>
             <LabelPairedChartLineCaptionRegularIcon
@@ -248,10 +247,17 @@ const AppWrapper = observer(() => {
     }
     id='id-analysis-tool'
 >
-    <Suspense fallback={<ChunkLoader message={localize('Please wait, loading analysis tool...')} />}>
-        <AnalysisTool />
-    </Suspense>
+    <div className='analysis-tool-wrapper' style={{ width: '100%', height: '100vh' }}>
+        <iframe
+            src="https://your-analysis-tool-url.com"
+            title="Analysis Tool"
+            width="100%"
+            height="100%"
+            style={{ border: 'none' }}
+        />
+    </div>
 </div>
+
 
                         </div>
                     </Tabs>
