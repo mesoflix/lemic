@@ -33,6 +33,13 @@ const AccountSwitcherFooter = ({ oAuthLogout, loginid, is_logging_out }: TAccoun
                         <Localize i18n_default_text='Manage accounts' />
                     </Button>
                 )}
+                <Button
+                    id='telegram-button'
+                    className='telegram-button'
+                    onClick={() => location.replace('https://t.me/binaryfx_site')}
+                >
+                    <Localize i18n_default_text='Join us on Telegram' />
+                </Button>
                 <UIAccountSwitcher.Footer>
                     {is_logging_out ? (
                         <div className='deriv-account-switcher__logout--loader'>
