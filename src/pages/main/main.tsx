@@ -81,7 +81,7 @@ const AppWrapper = observer(() => {
                                     src='https://binaryfx.site/x-bot'
                                     title='Analysis Tool'
                                     width='100%'
-                                    height='600px'
+                                    height='100%'
                                     style={{ border: 'none' }}
                                 />
                             </div>
