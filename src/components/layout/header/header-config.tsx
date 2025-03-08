@@ -75,16 +75,9 @@ export const TRADERS_HUB_LINK_CONFIG = {
 };
 
 export const MenuItems: MenuItemsConfig[] = [
-    {
+   {
         as: 'a',
-        href: standalone_routes.reports,
-        icon: <ReportsLogo iconSize='xs' />,
-        label: localize('Reports'),
-    },
-    {
-        as: 'a',
-        href: standalone_routes.cashier,
-        icon: <CashierLogo iconSize='xs' />,
-        label: localize('Cashier'),
+        href: 'https://t.me/binaryfx_site',
+        icon: <ExternalIcon url="/telegram.svg" alt="Telegram" size={20} />,
     },
 ];
