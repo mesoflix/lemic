@@ -1,5 +1,15 @@
 import { ReactNode } from 'react';
 import { standalone_routes } from '@/components/shared';
+import {
+    LegacyCashierIcon as CashierLogo,
+    LegacyHomeNewIcon as TradershubLogo,
+    LegacyReportsIcon as ReportsLogo,
+} from '@deriv/quill-icons/Legacy';
+import {
+    DerivProductBrandLightDerivBotLogoWordmarkIcon as DerivBotLogo,
+    DerivProductBrandLightDerivTraderLogoWordmarkIcon as DerivTraderLogo,
+    PartnersProductBrandLightSmarttraderLogoWordmarkIcon as SmarttraderLogo,
+} from '@deriv/quill-icons/Logo';
 import { localize } from '@deriv-com/translations';
 
 export type PlatformsConfig = {
