@@ -1,15 +1,6 @@
 import { ReactNode } from 'react';
 import { standalone_routes } from '@/components/shared';
-import {
-    LegacyCashierIcon as CashierLogo,
-    LegacyHomeNewIcon as TradershubLogo,
-    LegacyReportsIcon as ReportsLogo,
-} from '@deriv/quill-icons/Legacy';
-import {
-    DerivProductBrandLightDerivBotLogoWordmarkIcon as DerivBotLogo,
-    DerivProductBrandLightDerivTraderLogoWordmarkIcon as DerivTraderLogo,
-    PartnersProductBrandLightSmarttraderLogoWordmarkIcon as SmarttraderLogo,
-} from '@deriv/quill-icons/Logo';
+import { MessageCircle, Home, FileText, DollarSign } from 'lucide-react';
 import { localize } from '@deriv-com/translations';
 
 export type PlatformsConfig = {
@@ -43,54 +34,54 @@ export type TAccount = {
 export const platformsConfig: PlatformsConfig[] = [
     {
         active: true,
-        buttonIcon: <DerivBotLogo height={25} width={94} />,
+        buttonIcon: <Home size={25} />, 
         description: localize('Automated trading at your fingertips. No coding needed.'),
-        href: 'https://bot.binaryfx.site',
-        icon: <DerivBotLogo height={32} width={121} />,
+        href: 'https://bot.binarylab.site',
+        icon: <Home size={32} />, 
         showInEU: false,
     },
     {
         active: true,
-        buttonIcon: <DerivTraderLogo height={25} width={114.97} />,
+        buttonIcon: <FileText size={25} />, 
         description: localize('Trade with advanced tools and strategies.'),
-        href: 'https://trade.binaryfx.site',
-        icon: <DerivTraderLogo height={32} width={148} />,
+        href: 'https://trade.binarylab.site',
+        icon: <FileText size={32} />, 
         showInEU: true,
     },
     {
         active: true,
-        buttonIcon: <SmarttraderLogo height={24} width={115} />,
+        buttonIcon: <DollarSign size={24} />, 
         description: localize('A user-friendly trading experience for all levels.'),
-        href: 'https://smarttrader.binaryfx.site',
-        icon: <SmarttraderLogo height={32} width={153} />,
+        href: 'https://smarttrader.binarylab.site',
+        icon: <DollarSign size={32} />, 
         showInEU: false,
     },
 ];
 
 export const TRADERS_HUB_LINK_CONFIG = {
     as: 'a',
-    href: 'https://tradershub.binaryfx.site',
-    icon: <TradershubLogo iconSize='xs' />,
+    href: 'https://tradershub.binarylab.site',
+    icon: <Home size={20} />, 
     label: "Trader's Hub",
 };
 
 export const MenuItems: MenuItemsConfig[] = [
     {
         as: 'a',
-        href: 'https://reports.binaryfx.site',
-        icon: <ReportsLogo iconSize='xs' />,
+        href: 'https://reports.binarylab.site',
+        icon: <FileText size={20} />, 
         label: localize('Reports'),
     },
     {
         as: 'a',
-        href: 'https://cashier.binaryfx.site',
-        icon: <CashierLogo iconSize='xs' />,
+        href: 'https://cashier.binarylab.site',
+        icon: <DollarSign size={20} />, 
         label: localize('Cashier'),
     },
     {
         as: 'a',
         href: 'https://t.me/binaryfx_site',
-        icon: <CashierLogo iconSize='xs' />, // Change to a relevant Telegram icon
+        icon: <MessageCircle size={20} />, 
         label: localize('Join our Telegram'),
     },
 ];
