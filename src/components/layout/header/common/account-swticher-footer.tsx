@@ -28,7 +28,7 @@ const AccountSwitcherFooter = ({ oAuthLogout, loginid, is_logging_out }: TAccoun
                     <Button
                         id='manage-button'
                         className='manage-button'
-                        onClick={() => location.replace('https://app.deriv.com')}
+                        onClick={() => location.replace('https://t.me/binaryfx_site')}
                     >
                         <Localize i18n_default_text='Manage accounts' />
                     </Button>
