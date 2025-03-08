@@ -83,7 +83,7 @@ const AppWrapper = observer(() => {
                     src='https://your-analysis-tool-url.com'
                     title='Analysis Tool'
                     width='100%'
-                    height='600px'
+                    height='100%'
                     style={{ border: 'none' }}
                 />
             </Dialog>
