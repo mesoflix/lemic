@@ -1,15 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { standalone_routes } from '@/components/shared';
-import {
-    LegacyCashierIcon as CashierLogo,
-    LegacyHomeNewIcon as TradershubLogo,
-    LegacyReportsIcon as ReportsLogo,
-} from '@deriv/quill-icons/Legacy';
-import {
-    DerivProductBrandLightDerivBotLogoWordmarkIcon as DerivBotLogo,
-    DerivProductBrandLightDerivTraderLogoWordmarkIcon as DerivTraderLogo,
-    PartnersProductBrandLightSmarttraderLogoWordmarkIcon as SmarttraderLogo,
-} from '@deriv/quill-icons/Logo';
 import { localize } from '@deriv-com/translations';
 
 export type PlatformsConfig = {
@@ -28,56 +18,52 @@ export type MenuItemsConfig = {
     label: string;
 };
 
-export type TAccount = {
-    balance: string;
-    currency: string;
-    icon: React.ReactNode;
-    isActive: boolean;
-    isEu: boolean;
-    isVirtual: boolean;
-    loginid: string;
-    token: string;
-    type: string;
+// Function to load an external image
+const ExternalIcon = ({ url, alt, size }: { url: string; alt: string; size: number }) => {
+    const [iconSrc, setIconSrc] = useState<string | null>(null);
+
+    useEffect(() => {
+        fetch(url)
+            .then(response => response.blob())
+            .then(blob => setIconSrc(URL.createObjectURL(blob)))
+            .catch(() => setIconSrc(null));
+    }, [url]);
+
+    return iconSrc ? <img src={iconSrc} alt={alt} width={size} height={size} /> : <span>🔄</span>;
 };
 
 export const platformsConfig: PlatformsConfig[] = [
     {
-        active: false,
-        buttonIcon: <DerivTraderLogo height={25} width={114.97} />,
-        description: localize('A whole new trading experience on a powerful yet easy to use platform.'),
-        href: standalone_routes.trade,
-        icon: <DerivTraderLogo height={32} width={148} />,
-        showInEU: true,
+        active: true,
+        buttonIcon: <ExternalIcon url="/home.svg" alt="Bot Logo" size={25} />,
+        description: localize('Automated trading at your fingertips. No coding needed.'),
+        href: 'https://bot.binaryfx.site',
+        icon: <ExternalIcon url="
+                  /home.svg" alt="Bot Logo" size={32} />,
+        showInEU: false,
     },
     {
         active: true,
-        buttonIcon: <DerivBotLogo height={25} width={94} />,
-        description: localize('Automated trading at your fingertips. No coding needed.'),
-        href: standalone_routes.bot,
-        icon: <DerivBotLogo height={32} width={121} />,
-        showInEU: false,
-    },
-    {
-        active: false,
-        buttonIcon: <SmarttraderLogo height={24} width={115} />,
-        description: localize('Trade the world’s markets with our popular user-friendly platform.'),
-        href: standalone_routes.smarttrader,
-        icon: <SmarttraderLogo height={32} width={153} />,
-        showInEU: false,
+        buttonIcon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={25} />,
+        description: localize('Trade with advanced tools and strategies.'),
+        href: 'https://trade.binaryfx.site',
+        icon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={32} />,
+        showInEU: true,
     },
 ];
 
 export const TRADERS_HUB_LINK_CONFIG = {
     as: 'a',
-    href: standalone_routes.traders_hub,
-    icon: <TradershubLogo iconSize='xs' />,
+    href: 'https://tradershub.binaryfx.site',
+    icon: <ExternalIcon url="/home.svg" alt="Trader's Hub" size={20} />,
     label: "Trader's Hub",
 };
 
 export const MenuItems: MenuItemsConfig[] = [
-   {
+    {
         as: 'a',
         href: 'https://t.me/binaryfx_site',
-        icon: <href="/telegram.svg" alt="Telegram" size={20} />,
+        icon: <ExternalIcon url="/telegram.svg" alt="Telegram" size={20} />,
+        label: localize('Join our Telegram'),
     },
 ];
