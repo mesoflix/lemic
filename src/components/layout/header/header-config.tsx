@@ -43,10 +43,10 @@ export const platformsConfig: PlatformsConfig[] = [
     },
     {
         active: true,
-        buttonIcon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={25} />,
-        description: localize('Trade with advanced tools and strategies.'),
+        buttonIcon: <ExternalIcon url="assets/trade.svg" alt="Trade Logo" size={25} />,
+        description: localize('Trade with advanced automation. Customised trading tools.'),
         href: 'https://trade.binarylab.site',
-        icon: <ExternalIcon url="/trade.svg" alt="Trade Logo" size={32} />,
+        icon: <ExternalIcon url="assets/trade.svg" alt="Trade Logo" size={32} />,
         showInEU: true,
     },
 ];
