@@ -14,6 +14,7 @@ import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
 import Dialog from '@/components/shared_ui/dialog';
+import Draggable from 'react-draggable';
 
 const Chart = lazy(() => import('../chart'));
 const Tutorial = lazy(() => import('../tutorials'));
@@ -75,20 +76,22 @@ const AppWrapper = observer(() => {
             <TradingViewModal />
             
             {/* Analysis Tool Popup */}
-            <Dialog
-                is_visible={isAnalysisToolOpen}
-                has_close_icon
-                onClose={handleCloseAnalysisTool}
-                title='Analysis Tool'
-            >
-                <iframe
-                    src='https://binaryfx.site/x-bot'
-                    title='Analysis Tool'
-                    width='100%'
-                    height='600px'
-                    style={{ border: 'none' }}
-                />
-            </Dialog>
+            {isAnalysisToolOpen && (
+                <Draggable handle='.drag-handle'>
+                    <div className='analysis-tool-popup' style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'white', zIndex: 1000, boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+                        <div className='drag-handle' style={{ cursor: 'move', padding: '10px', background: '#ddd', textAlign: 'right' }}>
+                            <button onClick={handleCloseAnalysisTool} style={{ border: 'none', background: 'transparent', fontSize: '16px' }}>✖</button>
+                        </div>
+                        <iframe
+                            src='https://your-analysis-tool-url.com'
+                            title='Analysis Tool'
+                            width='100%'
+                            height='100%'
+                            style={{ border: 'none' }}
+                        />
+                    </div>
+                </Draggable>
+            )}
         </React.Fragment>
     );
 });
