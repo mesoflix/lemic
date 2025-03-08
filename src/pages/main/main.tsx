@@ -78,7 +78,7 @@ const AppWrapper = observer(() => {
                         <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Analysis Tool</>} id='id-analysis-tool'>
                             <div className='analysis-tool-wrapper' style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100vh', overflow: 'hidden' }}>
                                 <iframe
-                                    src='https://binaryfx.site/x-bot'
+                                    src='https://your-analysis-tool-url.com'
                                     title='Analysis Tool'
                                     width='100%'
                                     height='100%'
@@ -92,7 +92,13 @@ const AppWrapper = observer(() => {
                             <div className='free-bots-wrapper' style={{ padding: '20px' }}>
                                 <h2>Free Bots</h2>
                                 <p>Browse and download free bot files here.</p>
-                                {/* Add bot file listings here */}
+                                <ul>
+                                    <li><a href='#'>Bot Strategy 1</a> - A high-frequency trading bot.</li>
+                                    <li><a href='#'>Bot Strategy 2</a> - A trend-following bot.</li>
+                                    <li><a href='#'>Bot Strategy 3</a> - A volatility-based trading bot.</li>
+                                    <li><a href='#'>Bot Strategy 4</a> - A reversal pattern bot.</li>
+                                    <li><a href='#'>Bot Strategy 5</a> - A support and resistance bot.</li>
+                                </ul>
                             </div>
                         </div>
                     </Tabs>
