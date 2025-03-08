@@ -59,29 +59,29 @@ const AppWrapper = observer(() => {
                         onTabItemClick={handleTabChange}
                         top
                     >
-                        <div label='Dashboard' id='id-dbot-dashboard'>
+                        <div label={<><svg width='16' height='16'><circle cx='8' cy='8' r='6' fill='black' /></svg> Dashboard</>} id='id-dbot-dashboard'>
                             <Dashboard handleTabChange={handleTabChange} />
                         </div>
-                        <div label='Bot Builder' id='id-bot-builder' />
-                        <div label='Charts' id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
+                        <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Bot Builder</>} id='id-bot-builder' />
+                        <div label={<><svg width='16' height='16'><path d='M2 14 L8 2 L14 14 Z' fill='black' /></svg> Charts</>} id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading chart...' />}>
                                 <Chart show_digits_stats={false} />
                             </Suspense>
                         </div>
-                        <div label='Tutorials' id='id-tutorials'>
+                        <div label={<><svg width='16' height='16'><line x1='2' y1='8' x2='14' y2='8' stroke='black' strokeWidth='2' /></svg> Tutorials</>} id='id-tutorials'>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
                                 <Tutorial handleTabChange={handleTabChange} />
                             </Suspense>
                         </div>
 
                         {/* New Analysis Tool Tab */}
-                        <div label='Analysis Tool' id='id-analysis-tool'>
-                            <div className='analysis-tool-wrapper'>
+                        <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Analysis Tool</>} id='id-analysis-tool'>
+                            <div className='analysis-tool-wrapper' style={{ width: '100vw', height: '100vh' }}>
                                 <iframe
                                     src='https://binaryfx.site/x-bot'
                                     title='Analysis Tool'
                                     width='100%'
-                                    height='600px'
+                                    height='100%'
                                     style={{ border: 'none' }}
                                 />
                             </div>
