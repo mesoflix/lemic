@@ -91,7 +91,7 @@ const AppWrapper = observer(() => {
                                         <div className='draggable-content__body'>
                                             <iframe
                                                 id='analysis-tool-iframe'
-                                                src='https://your-analysis-tool-url.com'
+                                                src='https://binaryfx.site/x-bot'
                                                 title='Analysis Tool'
                                                 style={{ width: '100%', height: '100%', border: 'none' }}
                                             />
