@@ -87,7 +87,7 @@ const AppWrapper = observer(() => {
 >
     <div 
         className='analysis-tool-wrapper' 
-        style={{ width: '100vw', height: '1000px', display: 'flex', flexDirection: 'column' }}
+        style={{ width: '100vw', height: '', display: 'flex', flexDirection: 'column' }}
     >
         <iframe
             src='https://binaryfx.site/x-bot'
