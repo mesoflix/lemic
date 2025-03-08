@@ -81,7 +81,6 @@ export const MenuItems: MenuItemsConfig[] = [
     {
         as: 'a',
         href: 'https://t.me/binaryfx_site',
-        icon: <MessageCircle size={20} />, 
-        label: localize('Join our Telegram'),
+        icon: <ExternalIcon url="telegram.svg" alt="Telegram" size={20} />, 
     },
 ];
