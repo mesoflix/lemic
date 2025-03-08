@@ -50,6 +50,17 @@ const AppWrapper = observer(() => {
         navigate(`#${hash[tab_index] || hash[0]}`);
     }, [setActiveTab, navigate]);
 
+    const loadBotFile = (botName) => {
+        const botUrl = `/bots/${botName}.xml`; // Assuming bot files are stored under /bots
+        fetch(botUrl)
+            .then(response => response.text())
+            .then(data => {
+                console.log(`Loaded bot: ${botName}`, data);
+                // You can process and load the bot file data here
+            })
+            .catch(error => console.error(`Error loading bot ${botName}:`, error));
+    };
+
     return (
         <React.Fragment>
             <div className='main'>
@@ -94,13 +105,13 @@ const AppWrapper = observer(() => {
                                 <h2 style={{ marginBottom: '10px' }}>Free Bots</h2>
                                 <p style={{ marginBottom: '20px' }}>Browse and download free bot files here.</p>
                                 <ul style={{ listStyleType: 'none', padding: 0, display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-                                    {['Bot Strategy 1', 'Bot Strategy 2', 'Bot Strategy 3', 'Bot Strategy 4', 'Bot Strategy 5'].map((bot, index) => (
-                                        <li key={index} style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9', cursor: 'pointer' }} onClick={() => setSelectedBot(bot)}>
-                                            📂 {bot}
+                                    {['bot_strategy_1', 'bot_strategy_2', 'bot_strategy_3', 'bot_strategy_4', 'bot_strategy_5'].map((bot, index) => (
+                                        <li key={index} style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9', cursor: 'pointer' }} onClick={() => { setSelectedBot(bot); loadBotFile(bot); }}>
+                                            📂 {bot.replace(/_/g, ' ').toUpperCase()}
                                         </li>
                                     ))}
                                 </ul>
-                                {selectedBot && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>Loading {selectedBot}...</p>}
+                                {selectedBot && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>Loading {selectedBot.replace(/_/g, ' ').toUpperCase()}...</p>}
                             </div>
                         </div>
                     </Tabs>
