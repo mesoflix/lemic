@@ -1,4 +1,4 @@
-tsimport { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { standalone_routes } from '@/components/shared';
 import { localize } from '@deriv-com/translations';
 
