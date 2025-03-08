@@ -86,18 +86,18 @@ const AppWrapper = observer(() => {
     id='id-analysis-tool'
 >
     <div 
-        className='analysis-tool-wrapper' 
-        style={{ width: '100vw', height: '', display: 'flex', flexDirection: 'column' }}
-    >
-        <iframe
-            src='https://binaryfx.site/x-bot'
-            title='Analysis Tool'
-            width='100%'
-            height='100%'
-            style={{ border: 'none', flexGrow: 1 }}
-        />
-    </div>
+    className='analysis-tool-wrapper' 
+    style={{ width: '100vw', height: '100vh', overflow: 'auto' }}
+>
+    <iframe
+        src='https://binaryfx.site/x-bot'
+        title='Analysis Tool'
+        width='100%'
+        height='100%'
+        style={{ border: 'none' }}
+    />
 </div>
+
 
                     </Tabs>
                 </div>
