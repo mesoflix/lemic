@@ -69,7 +69,7 @@ const AppWrapper = observer(() => {
                             </Suspense>
                         </div>
                         <div label={<><svg width='16' height='16'><line x1='2' y1='8' x2='14' y2='8' stroke='black' strokeWidth='2' /></svg> Tutorials</>} id='id-tutorials'>
-                            <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
+                            <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials....' />}>
                                 <Tutorial handleTabChange={handleTabChange} />
                             </Suspense>
                         </div>
