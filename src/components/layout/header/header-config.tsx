@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { standalone_routes } from '@/components/shared';
-import { MessageCircle, Home, FileText, DollarSign } from 'lucide-react';
 import { localize } from '@deriv-com/translations';
 
 export type PlatformsConfig = {
