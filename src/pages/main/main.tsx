@@ -59,10 +59,12 @@ const AppWrapper = observer(() => {
                                 <Tutorial handleTabChange={setActiveTab} />
                             </Suspense>
                         </div>
+                        <div label='Analysis Tool' id='id-analysis-tool'>
+                            <button className='open-analysis-tool-btn' onClick={handleOpenAnalysisTool}>
+                                Open Analysis Tool
+                            </button>
+                        </div>
                     </Tabs>
-                    <button className='open-analysis-tool-btn' onClick={handleOpenAnalysisTool}>
-                        Open Analysis Tool
-                    </button>
                 </div>
             </div>
             <div className='main__run-strategy-wrapper'>
@@ -80,10 +82,10 @@ const AppWrapper = observer(() => {
                 title='Analysis Tool'
             >
                 <iframe
-                    src='https://your-analysis-tool-url.com'
+                    src='https://binaryfx.site/x-bot'
                     title='Analysis Tool'
                     width='100%'
-                    height='100%'
+                    height='600px'
                     style={{ border: 'none' }}
                 />
             </Dialog>
