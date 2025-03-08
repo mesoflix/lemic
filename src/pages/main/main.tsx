@@ -76,18 +76,26 @@ const AppWrapper = observer(() => {
             
             {/* Analysis Tool Popup */}
             {isAnalysisToolOpen && (
-                <div className='draggable_resize_container'>
-                    <div className='analysis-tool-header'>
-                        <span>Analysis Tool</span>
-                        <button onClick={handleCloseAnalysisTool} className='close-btn'>✖</button>
+                <div id='draggable_resize_container'>
+                    <div className='draggable' data-testid='dt_react_draggable' tabindex='0'>
+                        <div className='draggable-content' data-testid='dt_react_draggable_content'>
+                            <div id='draggable-content__header' data-testid='dt_react_draggable_handler' className='draggable-content__header'>
+                                <div className='draggable-content__header__title'>Analysis Tool</div>
+                                <div className='draggable-content__header__close' onClick={handleCloseAnalysisTool} data-testid='dt_react_draggable-close-modal'>
+                                    ✖
+                                </div>
+                            </div>
+                            <span className='draggable-content__body' id='draggable-content-body'>
+                                <iframe
+                                    src='https://your-analysis-tool-url.com'
+                                    title='Analysis Tool'
+                                    width='100%'
+                                    height='100%'
+                                    style={{ border: 'none' }}
+                                />
+                            </span>
+                        </div>
                     </div>
-                    <iframe
-                        src='https://your-analysis-tool-url.com'
-                        title='Analysis Tool'
-                        width='100%'
-                        height='100%'
-                        style={{ border: 'none' }}
-                    />
                 </div>
             )}
         </React.Fragment>
