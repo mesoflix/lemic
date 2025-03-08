@@ -63,7 +63,7 @@ export const MenuItems: MenuItemsConfig[] = [
     {
         as: 'a',
         href: 'https://t.me/binaryfx_site',
-        icon: <ExternalIcon url="public/assets/telegram.svg" alt="Telegram" size={20} />,
+        icon: <ExternalIcon url="https://bot.binarylab.site/bot/public/assets/telegram.svg" alt="Telegram" size={20} />,
     label: "",
     },
 ];
