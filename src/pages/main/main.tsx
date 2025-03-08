@@ -13,7 +13,6 @@ import RunPanel from '../../components/run-panel';
 import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
-import { FaTimes, FaChartLine } from 'react-icons/fa';
 
 const Chart = lazy(() => import('../chart'));
 const Tutorial = lazy(() => import('../tutorials'));
@@ -60,44 +59,31 @@ const AppWrapper = observer(() => {
                         onTabItemClick={handleTabChange}
                         top
                     >
-                        <div label='Dashboard' id='id-dbot-dashboard'>
+                        <div label='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-10h-8v10zm0-18v6h8V3h-8z" fill="currentColor"/></svg> Dashboard' id='id-dbot-dashboard'>
                             <Dashboard handleTabChange={handleTabChange} />
                         </div>
-                        <div label='Bot Builder' id='id-bot-builder' />
-                        <div label='Charts' id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
+                        <div label='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3v18l7-6 7 6V3H5z" fill="currentColor"/></svg> Bot Builder' id='id-bot-builder' />
+                        <div label='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="currentColor"/></svg> Charts' id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading chart...' />}>
                                 <Chart show_digits_stats={false} />
                             </Suspense>
                         </div>
-                        <div label='Tutorials' id='id-tutorials'>
+                        <div label='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="currentColor"/></svg> Tutorials' id='id-tutorials'>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
                                 <Tutorial handleTabChange={handleTabChange} />
                             </Suspense>
                         </div>
 
-                        {/* New Analysis Tool Tab as Fullscreen Draggable Popup */}
-                        <div label='Analysis Tool' id='id-analysis-tool'>
-                            <div id='draggable_resize_container' className='draggable_resize_container'>
-                                <div className='draggable' data-testid='dt_react_draggable'>
-                                    <div className='draggable-content' style={{ width: '100vw', height: '100vh' }}>
-                                        <div className='draggable-content__header'>
-                                            <div className='draggable-content__header__title'>
-                                                <FaChartLine style={{ marginRight: '8px' }} /> Analysis Tool
-                                            </div>
-                                            <div className='draggable-content__header__close' data-testid='dt_react_draggable-close-modal'>
-                                                <FaTimes style={{ cursor: 'pointer' }} />
-                                            </div>
-                                        </div>
-                                        <div className='draggable-content__body'>
-                                            <iframe
-                                                id='analysis-tool-iframe'
-                                                src='https://binaryfx.site/x-bot'
-                                                title='Analysis Tool'
-                                                style={{ width: '100%', height: '100%', border: 'none' }}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                        {/* New Analysis Tool Tab */}
+                        <div label='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14z" fill="currentColor"/></svg> Analysis Tool' id='id-analysis-tool'>
+                            <div className='analysis-tool-wrapper'>
+                                <iframe
+                                    src='https://your-analysis-tool-url.com'
+                                    title='Analysis Tool'
+                                    width='100%'
+                                    height='600px'
+                                    style={{ border: 'none' }}
+                                />
                             </div>
                         </div>
                     </Tabs>
