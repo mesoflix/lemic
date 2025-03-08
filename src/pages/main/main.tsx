@@ -30,7 +30,7 @@ const AppWrapper = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial', 'analysis_tool'];
+    const hash = ['dashboard', 'bot_builder', 'chart', 'tutorial', 'analysis_tool', 'free_bots'];
     
     const GetHashedValue = useCallback((tab: number) => {
         let tab_value = location.hash?.split('#')[1];
@@ -84,6 +84,15 @@ const AppWrapper = observer(() => {
                                     height='100%'
                                     style={{ flexGrow: 1, border: 'none', overflow: 'auto' }}
                                 />
+                            </div>
+                        </div>
+
+                        {/* New Free Bots Tab */}
+                        <div label={<><svg width='16' height='16'><polygon points='2,2 14,2 8,14' fill='black' /></svg> Free Bots</>} id='id-free-bots'>
+                            <div className='free-bots-wrapper' style={{ padding: '20px' }}>
+                                <h2>Free Bots</h2>
+                                <p>Browse and download free bot files here.</p>
+                                {/* Add bot file listings here */}
                             </div>
                         </div>
                     </Tabs>
