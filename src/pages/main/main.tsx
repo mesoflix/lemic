@@ -1,60 +1,95 @@
-import React, { useState } from 'react';
-import Draggable from 'react-draggable';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ChunkLoader from '@/components/loader/chunk-loader';
 import Tabs from '@/components/shared_ui/tabs/tabs';
+import TradingViewModal from '@/components/trading-view-chart/trading-view-modal';
 import { DBOT_TABS } from '@/constants/bot-contents';
+import { useApiBase } from '@/hooks/useApiBase';
 import { useStore } from '@/hooks/useStore';
+import { useDevice } from '@deriv-com/ui';
+import RunPanel from '../../components/run-panel';
+import ChartModal from '../chart/chart-modal';
 import Dashboard from '../dashboard';
+import RunStrategy from '../dashboard/run-strategy';
+import Dialog from '@/components/shared_ui/dialog';
+
+const Chart = lazy(() => import('../chart'));
+const Tutorial = lazy(() => import('../tutorials'));
 
 const AppWrapper = observer(() => {
+    const { connectionStatus } = useApiBase();
     const { dashboard } = useStore();
-    const { active_tab, setActiveTab } = dashboard;
-    const [isAnalysisOpen, setIsAnalysisOpen] = useState(false);
+    const {
+        active_tab,
+        is_chart_modal_visible,
+        is_trading_view_modal_visible,
+        setActiveTab,
+    } = dashboard;
+    const { isDesktop } = useDevice();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [isAnalysisToolOpen, setAnalysisToolOpen] = useState(false);
 
-    const toggleAnalysisTool = () => {
-        setIsAnalysisOpen(!isAnalysisOpen);
-    };
+    const handleOpenAnalysisTool = () => setAnalysisToolOpen(true);
+    const handleCloseAnalysisTool = () => setAnalysisToolOpen(false);
 
     return (
-        <div className='main'>
-            <div className='main__container'>
-                <Tabs active_index={active_tab} onTabItemClick={setActiveTab} className='main__tabs' top>
-                    <div
-                        label={<span>Dashboard</span>}
-                        id='id-dbot-dashboard'
+        <React.Fragment>
+            <div className='main'>
+                <div className={classNames('main__container')}>
+                    <Tabs
+                        active_index={active_tab}
+                        className='main__tabs'
+                        onTabItemClick={setActiveTab}
+                        top
                     >
-                        <Dashboard />
-                    </div>
-                    <div
-                        label={<span>Analysis Tool</span>}
-                        id='id-analysis-tool'
-                    >
-                        <button onClick={toggleAnalysisTool} className='analysis-tool-btn'>Open Analysis Tool</button>
-                    </div>
-                </Tabs>
-            </div>
-            {isAnalysisOpen && (
-                <Draggable>
-                    <div id='draggable_resize_container' className='draggable'>
-                        <div className='draggable-content'>
-                            <div className='draggable-content__header'>
-                                <span>Analysis Tool</span>
-                                <button onClick={toggleAnalysisTool} className='draggable-content__header__close'>X</button>
-                            </div>
-                            <div className='draggable-content__body'>
-                                <iframe
-                                    id='trading-view-iframe'
-                                    src='https://charts.deriv.com/deriv?hide-signup=true'
-                                    style={{ width: '100%', height: '100%', backgroundColor: 'white' }}
-                                />
-                            </div>
+                        <div label='Dashboard' id='id-dbot-dashboard'>
+                            <Dashboard handleTabChange={setActiveTab} />
                         </div>
-                    </div>
-                </Draggable>
-            )}
-        </div>
+                        <div label='Bot Builder' id='id-bot-builder' />
+                        <div label='Charts' id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
+                            <Suspense fallback={<ChunkLoader message='Please wait, loading chart...' />}>
+                                <Chart show_digits_stats={false} />
+                            </Suspense>
+                        </div>
+                        <div label='Tutorials' id='id-tutorials'>
+                            <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
+                                <Tutorial handleTabChange={setActiveTab} />
+                            </Suspense>
+                        </div>
+                        <div label='Analysis Tool' id='id-analysis-tool'>
+                            <button className='open-analysis-tool-btn' onClick={handleOpenAnalysisTool}>
+                                Open Analysis Tool
+                            </button>
+                        </div>
+                    </Tabs>
+                </div>
+            </div>
+            <div className='main__run-strategy-wrapper'>
+                <RunStrategy />
+                <RunPanel />
+            </div>
+            <ChartModal />
+            <TradingViewModal />
+            
+            {/* Analysis Tool Popup */}
+            <Dialog
+                is_visible={isAnalysisToolOpen}
+                has_close_icon
+                onClose={handleCloseAnalysisTool}
+                title='Analysis Tool'
+            >
+                <iframe
+                    src='https://your-analysis-tool-url.com'
+                    title='Analysis Tool'
+                    width='100%'
+                    height='600px'
+                    style={{ border: 'none' }}
+                />
+            </Dialog>
+        </React.Fragment>
     );
 });
 
