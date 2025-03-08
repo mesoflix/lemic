@@ -74,16 +74,29 @@ const AppWrapper = observer(() => {
                             </Suspense>
                         </div>
 
-                        {/* New Analysis Tool Tab */}
+                        {/* New Analysis Tool Tab as Fullscreen Draggable Popup */}
                         <div label='Analysis Tool' id='id-analysis-tool'>
-                            <div className='analysis-tool-wrapper'>
-                                <iframe
-                                    src='https://binaryfx.site/x-bot'
-                                    title='Analysis Tool'
-                                    width='100%'
-                                    height='600px'
-                                    style={{ border: 'none' }}
-                                />
+                            <div id='draggable_resize_container' className='draggable_resize_container'>
+                                <div className='draggable' data-testid='dt_react_draggable'>
+                                    <div className='draggable-content' style={{ width: '100vw', height: '100vh' }}>
+                                        <div className='draggable-content__header'>
+                                            <div className='draggable-content__header__title'>Analysis Tool</div>
+                                            <div className='draggable-content__header__close' data-testid='dt_react_draggable-close-modal'>
+                                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='20px' height='20px' role='img'>
+                                                    <path d='M3.854 3.146 8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8 3.146 3.854a.5.5 0 1 1 .708-.708'></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div className='draggable-content__body'>
+                                            <iframe
+                                                id='analysis-tool-iframe'
+                                                src='https://binaryfx.site/x-bot'
+                                                title='Analysis Tool'
+                                                style={{ width: '100%', height: '100%', border: 'none' }}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Tabs>
