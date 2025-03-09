@@ -34,31 +34,6 @@ const LocalComponent = observer(() => {
         }
     }, [loaded_local_file, is_file_supported, imported_strategy_type, is_open_button_loading, is_loading]);
 
-    // Updated handleFileChange function with app_id validation
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement | DragEvent>, showNotification = true) => {
-        const file = (event.target as HTMLInputElement)?.files?.[0] || event.dataTransfer?.files[0];
-        if (!file) return false;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const xmlString = e.target?.result as string;
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
-
-            const appId = xmlDoc.documentElement.getAttribute('app_id');
-
-            if (appId !== 'binaryfx-deriv') {
-                botNotification(notification_message().error, 'This file is not compatible with this app.');
-                return false;
-            }
-
-            setLoadedLocalFile(xmlDoc);
-        };
-
-        reader.readAsText(file);
-        return true;
-    };
-
     if (loaded_local_file && is_file_supported) {
         return (
             <div className='load-strategy__container load-strategy__container--has-footer'>
