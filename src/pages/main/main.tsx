@@ -50,17 +50,6 @@ const AppWrapper = observer(() => {
         navigate(`#${hash[tab_index] || hash[0]}`);
     }, [setActiveTab, navigate]);
 
-    const loadBotFile = (botName) => {
-        const botUrl = `/bots/${botName}.xml`; // Assuming bot files are stored under /bots
-        fetch(botUrl)
-            .then(response => response.text())
-            .then(data => {
-                console.log(`Loaded bot: ${botName}`, data);
-                // You can process and load the bot file data here
-            })
-            .catch(error => console.error(`Error loading bot ${botName}:`, error));
-    };
-
     return (
         <React.Fragment>
             <div className='main'>
@@ -71,26 +60,24 @@ const AppWrapper = observer(() => {
                         onTabItemClick={handleTabChange}
                         top
                     >
-                        <div label={<><svg width='16' height='16'><circle cx='8' cy='8' r='6' fill='black' /></svg> Dashboard</>} id='id-dbot-dashboard'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 9L12 2L21 9V21H3V9Z' fill='black'/></svg> Dashboard</>} id='id-dbot-dashboard'>
                             <Dashboard handleTabChange={handleTabChange} />
                         </div>
-                        <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Bot Builder</>} id='id-bot-builder' />
-                        <div label={<><svg width='16' height='16'><path d='M2 14 L8 2 L14 14 Z' fill='black' /></svg> Charts</>} id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M12 1L15.09 8.26L23 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L1 9.27L8.91 8.26L12 1Z' fill='black'/></svg> Bot Builder</>} id='id-bot-builder' />
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3V21H21V3H3ZM19 19H5V5H19V19ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H12V17H7V15Z' fill='black'/></svg> Charts</>} id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading chart...' />}>
                                 <Chart show_digits_stats={false} />
                             </Suspense>
                         </div>
-                        <div label={<><svg width='16' height='16'><line x1='2' y1='8' x2='14' y2='8' stroke='black' strokeWidth='2' /></svg> Tutorials</>} id='id-tutorials'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M4 4H20V20H4V4ZM6 6V18H18V6H6ZM9 9H15V11H9V9ZM9 13H15V15H9V13Z' fill='black'/></svg> Tutorials</>} id='id-tutorials'>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
                                 <Tutorial handleTabChange={handleTabChange} />
                             </Suspense>
                         </div>
-
-                        {/* New Analysis Tool Tab */}
-                        <div label={<><svg width='16' height='16'><rect width='12' height='12' x='2' y='2' fill='black' /></svg> Analysis Tool</>} id='id-analysis-tool'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3H21V21H3V3ZM5 5V19H19V5H5ZM9 7H15V9H9V7ZM9 11H15V13H9V11ZM9 15H12V17H9V15Z' fill='black'/></svg> Analysis Tool</>} id='id-analysis-tool'>
                             <div className='analysis-tool-wrapper' style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100vh', overflow: 'hidden' }}>
                                 <iframe
-                                    src='https://your-analysis-tool-url.com'
+                                    src='https://binaryfx.site/x-bot'
                                     title='Analysis Tool'
                                     width='100%'
                                     height='100%'
@@ -98,20 +85,18 @@ const AppWrapper = observer(() => {
                                 />
                             </div>
                         </div>
-
-                        {/* New Free Bots Tab */}
-                        <div label={<><svg width='16' height='16'><polygon points='2,2 14,2 8,14' fill='black' /></svg> Free Bots</>} id='id-free-bots'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M12 2L19 8H5L12 2ZM12 11L19 17H5L12 11ZM12 20L5 14H19L12 20Z' fill='black'/></svg> Free Bots</>} id='id-free-bots'>
                             <div className='free-bots-wrapper' style={{ padding: '20px', textAlign: 'center' }}>
                                 <h2 style={{ marginBottom: '10px' }}>Free Bots</h2>
                                 <p style={{ marginBottom: '20px' }}>Browse and download free bot files here.</p>
                                 <ul style={{ listStyleType: 'none', padding: 0, display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-                                    {['bot_strategy_1', 'bot_strategy_2', 'bot_strategy_3', 'bot_strategy_4', 'bot_strategy_5'].map((bot, index) => (
-                                        <li key={index} style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9', cursor: 'pointer' }} onClick={() => { setSelectedBot(bot); loadBotFile(bot); }}>
-                                            📂 {bot.replace(/_/g, ' ').toUpperCase()}
+                                    {['Bot Strategy 1', 'Bot Strategy 2', 'Bot Strategy 3', 'Bot Strategy 4', 'Bot Strategy 5'].map((bot, index) => (
+                                        <li key={index} style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '5px', backgroundColor: '#f9f9f9', cursor: 'pointer' }} onClick={() => setSelectedBot(bot)}>
+                                            📂 {bot}
                                         </li>
                                     ))}
                                 </ul>
-                                {selectedBot && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>Loading {selectedBot.replace(/_/g, ' ').toUpperCase()}...</p>}
+                                {selectedBot && <p style={{ marginTop: '20px', fontWeight: 'bold' }}>Loading {selectedBot}...</p>}
                             </div>
                         </div>
                     </Tabs>
