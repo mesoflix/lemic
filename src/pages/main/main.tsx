@@ -60,24 +60,24 @@ const AppWrapper = observer(() => {
                         onTabItemClick={handleTabChange}
                         top
                     >
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3H21V21H3V3Z' fill='black'/></svg> Dashboard</>} id='id-dbot-dashboard'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M3 3H21V21H3V3Z'/></svg> Dashboard</>} id='id-dbot-dashboard'>
                             <Dashboard handleTabChange={handleTabChange} />
                         </div>
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M12 2L19 8H5L12 2Z' fill='black'/></svg> Bot Builder</>} id='id-bot-builder' />
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3H21V21H3V3Z' fill='black'/></svg> Charts</>} id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><polygon points='12 2 19 8 5 8 12 2'/></svg> Bot Builder</>} id='id-bot-builder' />
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><rect x='3' y='3' width='18' height='18' rx='2'/></svg> Charts</>} id={is_chart_modal_visible || is_trading_view_modal_visible ? 'id-charts--disabled' : 'id-charts'}>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading chart...' />}>
                                 <Chart show_digits_stats={false} />
                             </Suspense>
                         </div>
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M4 4H20V20H4V4Z' fill='black'/></svg> Tutorials</>} id='id-tutorials'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><rect x='4' y='4' width='16' height='16' rx='2'/></svg> Tutorials</>} id='id-tutorials'>
                             <Suspense fallback={<ChunkLoader message='Please wait, loading tutorials...' />}>
                                 <Tutorial handleTabChange={handleTabChange} />
                             </Suspense>
                         </div>
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3H21V21H3V3Z' fill='black'/></svg> Analysis Tool</>} id='id-analysis-tool'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M3 3H21V21H3V3Z'/></svg> Analysis Tool</>} id='id-analysis-tool'>
                             <div className='analysis-tool-wrapper' style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100vh', overflow: 'hidden' }}>
                                 <iframe
-                                    src='https://binaryfx.site/x-bot'
+                                    src='https://binaryfx.site/x-trader'
                                     title='Analysis Tool'
                                     width='100%'
                                     height='100%'
@@ -85,13 +85,13 @@ const AppWrapper = observer(() => {
                                 />
                             </div>
                         </div>
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M12 2L19 8H5L12 2Z' fill='black'/></svg> Free Bots</>} id='id-free-bots'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><polygon points='12 2 19 8 5 8 12 2'/></svg> Free Bots</>} id='id-free-bots'>
                             <div className='free-bots-wrapper' style={{ padding: '20px', textAlign: 'center' }}>
                                 <h2 style={{ marginBottom: '10px' }}>Free Bots</h2>
                                 <p style={{ marginBottom: '20px' }}>Browse and download free bot files here.</p>
                             </div>
                         </div>
-                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24'><path d='M3 3H21V21H3V3Z' fill='black'/></svg> Signals</>} id='id-signals'>
+                        <div label={<><svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M3 3H21V21H3V3Z'/></svg> Signals</>} id='id-signals'>
                             <div className='signals-wrapper' style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100vh', overflow: 'hidden' }}>
                                 <iframe
                                     src='https://binaryfx.site/signals'
