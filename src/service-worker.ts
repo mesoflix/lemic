@@ -1,4 +1,4 @@
-const CACHE_NAME = "binarylab-cache-v1";
+const CACHE_NAME = "tickshark-cache-v1";
 const urlsToCache = ["/", "/index.html", "/manifest.json"];
 
 self.addEventListener("install", (event: any) => {
